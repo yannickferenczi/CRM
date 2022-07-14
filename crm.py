@@ -16,6 +16,9 @@ class CRM:
         self.research_label = Label(self.settings_frame, text="Search : ")
         self.research_label.grid(row=0, column=0)
 
+        self.research_entry = Entry(self.settings_frame)
+        self.research_entry.grid(row=0, column=1)
+
         self.contact_frame = LabelFrame(self.root, text=self.search, bg="#FF88FF")
         self.contact_frame.pack()
 
@@ -26,17 +29,17 @@ class CRM:
     
     def display_contact(self):
         # Create the header of the display
-        first_name_header = Label(self.contact_frame, text="First name", bg="#FF88FF", width=15)
+        first_name_header = Label(self.contact_frame, text="First name", bg="#FF88FF", width=15, anchor="w")
         first_name_header.grid(row=0, column=0)
-        family_name_header = Label(self.contact_frame, text="Family name", bg="#FF88FF", width=15)
+        family_name_header = Label(self.contact_frame, text="Family name", bg="#FF88FF", width=15, anchor="w")
         family_name_header.grid(row=0, column=1)
-        address_header = Label(self.contact_frame, text="Address", bg="#FF88FF", width=45)
+        address_header = Label(self.contact_frame, text="Address", bg="#FF88FF", width=45, anchor="w")
         address_header.grid(row=0, column=2)
-        phone_number_header = Label(self.contact_frame, text="Phone number", bg="#FF88FF", width=15)
+        phone_number_header = Label(self.contact_frame, text="Phone number", bg="#FF88FF", width=15, anchor="w")
         phone_number_header.grid(row=0, column=3)
-        email_address_header = Label(self.contact_frame, text="Email", bg="#FF88FF", width=45)
+        email_address_header = Label(self.contact_frame, text="Email", bg="#FF88FF", width=45, anchor="w")
         email_address_header.grid(row=0, column=4)
-        space_for_icones = Label(self.contact_frame, bg="#FF88FF", width=5)
+        space_for_icones = Label(self.contact_frame, bg="#FF88FF", anchor="w")
         space_for_icones.grid(row=0, column=5, columnspan=2)
 
         # For each contact in DB, create an instance of Contact and store it in a dictionnary
