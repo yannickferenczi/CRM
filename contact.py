@@ -1,4 +1,5 @@
 from tkinter import *
+import sqlite3
 
 class Contact:
     def __init__(self, first_name, family_name, street, postcode, city, phone_number, email_address, row_number):
@@ -28,15 +29,21 @@ class Contact:
         email_address.grid(row=self.row_number, column=4)
         
         modification_icone = PhotoImage(file="modification.png")
-        modification_button = Button(master_frame, image=modification_icone, bg="#EEEEEE", width=30, command=self.contact_modification)
+        modification_button = Button(master_frame, text="modifier", bg="#EEEEEE", width=10, command=self.contact_modification)
         modification_button.grid(row=self.row_number, column=5, padx=5)
 
         delete_icone = PhotoImage(file="trash.png")
-        delete_button = Button(master_frame, image=delete_icone, bg="#EEEEEE", width=30, command=self.delete_contact)
+        delete_button = Button(master_frame, text="supprimer", bg="#EEEEEE", width=10, command=self.delete_contact)
         delete_button.grid(row=self.row_number, column=6, padx=5)
 
     def contact_modification(self):
         pass
 
     def delete_contact(self):
-        pass
+        sql_conn = sqlite3.connect("contact_data.db")
+        curs = sql_conn.cursor()
+
+        curs.execute("DELETE FROM contacts WHERE first_name = ? and family_name = ?", (self.first_name, self.family_name))
+        sql_conn.commit()
+        sql_conn.close()
+
